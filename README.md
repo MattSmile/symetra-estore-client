@@ -1,46 +1,60 @@
-# Getting Started with Create React App
+# Symetra E-Store Client
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Table of Contents
 
-## Available Scripts
+- [Description](#description)
+- [Instructions](#instructions)
+- [Goals](#goals)
+  - [Develop API resources](#develop-api-resources-to-enable)
+  - [Stretch Goal](#stretch-goal)
+- [Assumptions](#assumptions)
+- [Scripts](#scripts)
+- [Notable Points](#notable-points)
 
-In the project directory, you can run:
+## Description
 
-### `npm start`
+Imagine an ecommerce store where the store owner gives out discounts to every nth transaction. Customers, as they login, get to see if they have discount and the appropriate discount code. Customers can then purchase items using the discount code if available. The store owner reviews at various times what the count of purchases that were made in the store as well as the total count of discounts that were given out.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Instructions
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- The app can be used online as both of the client and the server code are deployed.
+- To run the app locally:
+  - Clone both of the server and client repositories to a directory on your machine.
+  - Run `npm i` within both project directories to install dependencies.
+  - Run `npm start` on the server code repository.
+  - Run `npm start` on the client code repository.
+  - The app will be running on `http://localhost:3000`.
+  - The client code can be tested by running `npm t`
 
-### `npm test`
+## Goals
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Develop API resources
 
-### `npm run build`
+- An admin to set the n, and the discount code.
+- Customers to check if there is a discount code and then make a purchase with or without the discount code.
+- Admin to see the report described above.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Stretch Goal
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Develop a simple UI with different pages for admin and customer
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Assumptions
 
-### `npm run eject`
+- Server side state can be maintained all in memory, so no persistence layer is required
+- No authentication or authorization required on API/UI
+- Reports and any other data can be simple JSON – don’t worry about prettying it up
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Scripts
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- `npm i` - Installs necessary dependencies.
+- `npm start` - Runs the app locally.
+- `npm t` - Runs unit tests.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Notable Points
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+- Data is generated randomly to demonstrate scale and resilience
+- Because we need no persistent data layer, data is stored on the server in a `mockData` module.
+- You can toggle between the active user with the button in the top right. It is purely a random selection from all users to demonstrate that each coupon is only valid for the user that purchased the `nth` item
+- Reports are downloaded via the buttons on the Admin page. A `json` file will be downloaded to your device for the selection you chose. All purchases are displayed in a table for demo purposes.
+- Once a coupon is valid on a user, the user will get a "Use Coupon `couponCode`" button by the buy button. You can toggle this to either apply or remove the coupon for the purchase.
+- It was unclear how the coupon interval should be handled when an Admin modifies the interval. Without additional context, I left the calculation compared to all available orders instead of resetting it to 0 on a change.
