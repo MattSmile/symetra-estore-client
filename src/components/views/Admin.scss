@@ -1,0 +1,93 @@
+@import 'styles/base.scss';
+$font_red: #ae0000;
+$font_input_value: #161616;
+.Admin {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    flex-wrap: wrap;
+    h2 {
+        font-size: 1.5rem;
+        padding: 0.5rem;
+    }
+    section {
+        display: block;
+        padding: 1rem;
+        margin: 1rem 0;
+        background: rgba(0, 0, 0, 0.2);
+    }
+    form {
+        display: flex;
+        div {
+            padding: 0.5rem;
+        }
+        label {
+            width: 150px;
+            display: flex;
+            align-items: center;
+        }
+        .input-item {
+            outline: none;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            box-sizing: border-box;
+            border-radius: 4px;
+            padding: 16px;
+            font-size: 16px;
+            line-height: 100%;
+            caret-color: red;
+            color: $font_input_value;
+            background: rgba(0, 0, 0, 0.04);
+            margin-top: 10px;
+            margin-bottom: 10px;
+            &:focus,
+            &:active {
+                border-color: $font_red;
+                outline: none;
+                background: white;
+                opacity: 1;
+            }
+        }
+        button {
+            background-color: #04aa6d;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            width: 200px;
+            margin-left: 30px;
+            &:hover {
+                opacity: 0.8;
+            }
+        }
+    }
+}
+
+.PurchasesTable {
+    thead {
+        background: $white;
+        color: $primary;
+        font-weight: bold;
+        flex-basis: 1;
+        td {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+        th {
+            padding: 0.125rem;
+        }
+    }
+    td {
+        padding: 0.25rem 1rem;
+    }
+}
+
+.Reports {
+    a {
+        display: block;
+        &:hover {
+            color: $success;
+        }
+    }
+}
