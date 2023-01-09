@@ -4,29 +4,17 @@ import config from '../config';
 
 // Get a set amount of products
 export async function getProducts() {
-  return fetch(`${config.API_ENDPOINT}/products`)
-  // const products = ProductsData.generateProducts(count);
-  // console.log(`GET /products`);
-  // console.log(products);
-  // return products;
+  return fetch(`${config.API_ENDPOINT}/products`);
 }
 
 // Get a set amount of users
 export async function getUsers() {
-  return fetch(`${config.API_ENDPOINT}/users`)
-  // const users = UsersData.generateUsers(10);
-  // console.log(`GET /users`);
-  // console.log(users);
-  // return users;
+  return fetch(`${config.API_ENDPOINT}/users`);
 }
 
 // Return a random user to log in with
 export async function getCurrentUser() {
-  return fetch(`${config.API_ENDPOINT}/users/random`)
-  // const users = UsersData.generateUsers(10);
-  // console.log(`GET /users`);
-  // console.log(users);
-  // return users;
+  return fetch(`${config.API_ENDPOINT}/users/random`);
 }
 
 export async function getAdminDetails() {
@@ -34,15 +22,19 @@ export async function getAdminDetails() {
 }
 
 // Make a purchase
-export async function makePurchase(productId: string, userId: string, coupon?: Coupon) {
+export async function makePurchase(
+  productId: string,
+  userId: string,
+  coupon?: Coupon
+) {
   // Validate if user applied coupon
   let couponApplied: boolean;
   let couponCode: string | null;
-  if ( coupon ) {
+  if (coupon) {
     couponApplied = true;
     couponCode = coupon.code;
   } else {
-    couponApplied = false
+    couponApplied = false;
     couponCode = null;
   }
 
@@ -50,15 +42,15 @@ export async function makePurchase(productId: string, userId: string, coupon?: C
     productId: productId,
     userId: userId,
     couponApplied: couponApplied,
-    couponCode: couponCode
+    couponCode: couponCode,
   };
 
   return fetch(`${config.API_ENDPOINT}/purchases`, {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
     },
-    body: JSON.stringify(purchase)
+    body: JSON.stringify(purchase),
   });
 }
 
@@ -68,32 +60,32 @@ in as a prob as its already readily available in the component
 state. These would actually hit an endpoint in a real-world
 scenario */
 export async function getAllPurchases() {
-  return fetch(`${config.API_ENDPOINT}/purchases`)
+  return fetch(`${config.API_ENDPOINT}/purchases`);
 }
 
 export async function getCouponPurchases() {
-  return fetch(`${config.API_ENDPOINT}/purchases/coupon`)
+  return fetch(`${config.API_ENDPOINT}/purchases/coupon`);
 }
 
 export async function updateCouponInterval(couponInterval: number) {
   return fetch(`${config.API_ENDPOINT}/admin/interval`, {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ couponInterval })
-  })
-};
+    body: JSON.stringify({ couponInterval }),
+  });
+}
 
 export async function updateCouponCode(couponCode: string) {
   return fetch(`${config.API_ENDPOINT}/admin/coupon`, {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ couponCode })
-  })
-};
+    body: JSON.stringify({ couponCode }),
+  });
+}
 
 /* This sort of functionality would exist on the server
 I imagine the server will respond with a property
@@ -110,12 +102,14 @@ export function checkGrantCoupon(purchases: number, interval: number): boolean {
 }
 
 // Spoofing a server check if coupon is the current active promotion
-export function validateCoupon(coupon: string | null, current: string): boolean {
+export function validateCoupon(
+  coupon: string | null,
+  current: string
+): boolean {
   return coupon === current;
 }
 
 export default {
-
   getAdminDetails: getAdminDetails,
 
   getProducts: getProducts,
@@ -127,8 +121,8 @@ export default {
 
   updateCouponInterval: updateCouponInterval,
   updateCouponCode: updateCouponCode,
-  
+
   makePurchase: makePurchase,
   checkGrantCoupon: checkGrantCoupon,
-  validateCoupon: validateCoupon
+  validateCoupon: validateCoupon,
 };

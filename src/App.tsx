@@ -1,18 +1,11 @@
 import { useEffect, useContext } from 'react';
 import Router from 'routes/Router';
 import { Link } from 'react-router-dom';
-
-// Services / APIs
 import ApiService from 'services/ApiService';
-
-// Components
 import CurrentUserDisplay from 'components/CurrentUserDisplay/CurrentUserDisplay';
-
-// Styles
-import './App.scss';
-
-// Context
 import { AppContext } from 'contexts/AppContext';
+
+import './App.scss';
 
 const App = () => {
   // Need to dispatch Users and Products data into our Context
@@ -63,8 +56,8 @@ const App = () => {
 
   return (
     <div className="App">
-      <header>
-        <nav>
+      <header className="header-container">
+        <nav className="nav-container">
           <Link to="/">Main</Link>
           <Link to="/admin">Admin</Link>
           <CurrentUserDisplay />

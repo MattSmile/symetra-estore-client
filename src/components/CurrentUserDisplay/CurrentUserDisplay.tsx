@@ -1,16 +1,9 @@
-// Product Listing component
-// Core imports
-import React, { useContext } from 'react';
-
-// Types
+import { useContext } from 'react';
 import { User } from 'types/types.d';
-
-// Contexts
 import { AppContext } from 'contexts/AppContext';
-
-// Styles
-import './CurrentUserDisplay.scss';
 import ApiService from 'services/ApiService';
+
+import './CurrentUserDisplay.scss';
 
 const CurrentUserDisplay = () => {
   const { state, dispatch } = useContext(AppContext);
@@ -28,7 +21,7 @@ const CurrentUserDisplay = () => {
   };
 
   return (
-    <div className="CurrentUserDisplay">
+    <div className="current-user-display">
       <p className="name">{user.name}</p>
       <p className="coupon-code">Coupon: {user.couponCode || 'None'}</p>
       <p className="coupon-validity">
@@ -38,7 +31,9 @@ const CurrentUserDisplay = () => {
           : 'Invalid'}
       </p>
       {/* This is a button that will log you into a random user so you can see that the coupon persists and does not apply to other users */}
-      <button onClick={(e) => handleChangeUser()}>Pick Random User</button>
+      <button className="btn-random-user" onClick={() => handleChangeUser()}>
+        Pick Random User
+      </button>
     </div>
   );
 };

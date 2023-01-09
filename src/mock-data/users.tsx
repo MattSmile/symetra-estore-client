@@ -5,23 +5,21 @@ import { User } from 'types/types.d';
 
 // Generates data about users
 const UsersData = {
-
   // Generates a set number of random products
   generateUsers: (count: number) => {
     const mockUsers = [];
-    for ( let i=0; i<count; i++) {
+    for (let i = 0; i < count; i++) {
       const mockUser: User = {
         id: faker.random.uuid(),
         name: `${faker.name.firstName()} ${faker.name.lastName()}`,
         hasCoupon: false,
         couponCode: null,
-        purchases: []
+        purchases: [],
       };
       mockUsers.push(mockUser);
     }
     return mockUsers;
-  }
-  
-}
+  },
+};
 
 export default UsersData;
